@@ -62,7 +62,7 @@
     </dependency>
     <dependency>
       <groupId>com.zio</groupId>
-      <artifactId>zio-rpc-easy</artifactId>
+      <artifactId>zio-rpc-core</artifactId>
       <version>1.0-SNAPSHOT</version>
     </dependency>
 

@@ -4,10 +4,10 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.zio</groupId>
-  <artifactId>example-consumer</artifactId>
+  <artifactId>zio-rpc-core</artifactId>
   <version>1.0-SNAPSHOT</version>
 
-  <name>example-consumer</name>
+  <name>zio-rpc-core</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
@@ -41,6 +41,12 @@
       <scope>test</scope>
     </dependency>
 
+    <!-- https://mvnrepository.com/artifact/io.vertx/vertx-core -->
+    <dependency>
+      <groupId>io.vertx</groupId>
+      <artifactId>vertx-core</artifactId>
+      <version>4.5.1</version>
+    </dependency>
     <!-- https://doc.hutool.cn/ -->
     <dependency>
       <groupId>cn.hutool</groupId>
@@ -54,16 +60,17 @@
       <version>1.18.30</version>
       <scope>provided</scope>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
     <dependency>
-      <groupId>com.zio</groupId>
-      <artifactId>example-common</artifactId>
-      <version>1.0-SNAPSHOT</version>
-      <scope>compile</scope>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>1.3.12</version>
     </dependency>
     <dependency>
-      <groupId>com.zio</groupId>
-      <artifactId>zio-rpc-core</artifactId>
-      <version>1.0-SNAPSHOT</version>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>RELEASE</version>
+      <scope>test</scope>
     </dependency>
 
   </dependencies>
