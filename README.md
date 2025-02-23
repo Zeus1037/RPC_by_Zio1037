@@ -2,39 +2,51 @@
 
 >   先完成，再完美。  
 
+  
+
 
 
 ## :books: 项目介绍
 
-从0到1实现RPC框架，并在简易版RPC框架的基础上加以改进。
+从0到1实现RPC框架，并在简易版RPC框架的基础上加以改进。  
 
   
+
+
 
 ## :speech_balloon: 源码目录
 
 - example-common: 示例代码公用模块
 - example-consumer: 示例服务消费者
 - example-provider: 示例服务提供者
+- zio-rpc-core: 扩展版RPC框架
 - zio-rpc-easy: 简易版RPC框架
 - Note：项目笔记
-- Tutorial：超详细的实现教程
+- Tutorial：超详细的实现教程  
 
   
+
+
 
 ## :heavy_check_mark: 已完成部分
 
 -   简易版RPC框架，支持一行代码调用其它系统上的服务。
+-   全局配置加载
+-   接口Mock
 
   
 
+
+
 ## :pencil: Todo List
 
--   [ ] 全局配置加载
--   [ ] 接口Mock设计实现
 -   [ ] 多种序列化器实现
     -   [ ] Kryo序列化
     -   [ ] Json序列化
     -   [ ] Hessian序列化
+-   [ ] Web服务器多种技术实现
+    -   [ ] Socket
+    -   [ ] Netty
 -   [ ] SPI机制
 -   [ ] 注册中心的多种技术实现
     -   [ ] ZooKeeper

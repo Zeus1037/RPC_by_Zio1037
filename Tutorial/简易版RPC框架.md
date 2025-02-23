@@ -2,11 +2,11 @@
 
 1.   创建项目根目录
 
-![image-20250222154026249](C:\Users\23864\AppData\Roaming\Typora\typora-user-images\image-20250222154026249.png)
+![image-20250222154026249](..\assets\image-20250222154026249.png)
 
 2.   设置项目JDK版本【这里用到的JDK 为 `11`】
 
-![image-20250222153143796](C:\Users\23864\AppData\Roaming\Typora\typora-user-images\image-20250222153143796.png)
+![image-20250222153143796](..\assets\image-20250222153143796.png)
 
 
 
@@ -21,11 +21,11 @@
 
 以公共模块`example-common`举例，如下图所示：
 
-![image-20250222152507428](C:\Users\23864\AppData\Roaming\Typora\typora-user-images\image-20250222152507428.png)
+![image-20250222152507428](..\assets\image-20250222152507428.png)
 
 运行模块中的`App.java`，测试模块是否正常：
 
-![image-20250222153450903](C:\Users\23864\AppData\Roaming\Typora\typora-user-images\image-20250222153450903.png)
+![image-20250222153450903](..\assets\image-20250222153450903.png)
 
 同样方式创建其它模块，最后删除每个模块下自动创建的`App.java`。
 
@@ -37,17 +37,17 @@
 
 1.   在`example-common`模块下的`com.zio`包中创建`example.common.model`和`example.common.service`两个包。整个模块的结构如下图所示：
 
-![image-20250222154534367](C:\Users\23864\AppData\Roaming\Typora\typora-user-images\image-20250222154534367.png)
+![image-20250222154534367](..\assets\image-20250222154534367.png)
 
 2.   在`model`包下创建用户实体类`User`：
 
-![image-20250222155703129](C:\Users\23864\AppData\Roaming\Typora\typora-user-images\image-20250222155703129.png)
+![image-20250222155703129](..\assets\image-20250222155703129.png)
 
 注意，对象需要实现序列化接口，为后续网络传输序列化提供支持。
 
 3.   在`service`包下编写用户服务接口`UserService`，提供一个获取用户的方法：
 
-![image-20250222155646550](C:\Users\23864\AppData\Roaming\Typora\typora-user-images\image-20250222155646550.png)
+![image-20250222155646550](..\assets\image-20250222155646550.png)
 
 
 
@@ -57,15 +57,15 @@
 
 1.   打开`example-provider`模块，在`pom.xml`文件中引入要用到的依赖 (`zio-rpc-easy`, `example-common`, `hutool`和`lombook`)：
 
-![image-20250222182232602](C:\Users\23864\AppData\Roaming\Typora\typora-user-images\image-20250222182232602.png)
+![image-20250222182232602](..\assets\image-20250222182232602.png)
 
 2.   在`com.zio`包下创建`example.provider`包，并在该包下编写服务实现类`UserServiceImpl`，实现公共模块中定义的用户服务接口。功能是打印用户的名称，并将用户名反转后返回。
 
-![image-20250222181909390](C:\Users\23864\AppData\Roaming\Typora\typora-user-images\image-20250222181909390.png)
+![image-20250222181909390](..\assets\image-20250222181909390.png)
 
 3.   在`example.provider`包下编写服务提供者启动类`EasyProviderExample`，之后会在该类的`main`方法中编写提供服务的代码。
 
-![image-20250222161734211](C:\Users\23864\AppData\Roaming\Typora\typora-user-images\image-20250222161734211.png)
+![image-20250222161734211](..\assets\image-20250222161734211.png)
 
 
 
@@ -75,11 +75,11 @@
 
 1.   打开`example-consumer`模块，在`pom.xml`文件中引入依赖，和`example-provider`模块的依赖一致：
 
-![image-20250222182158435](C:\Users\23864\AppData\Roaming\Typora\typora-user-images\image-20250222182158435.png)
+![image-20250222182158435](..\assets\image-20250222182158435.png)
 
 2.   在`com.zio`包下创建`example.consumer`包，并在该包下创建服务消费者启动类`EasyConsumerExample`，编写调用接口的代码。该实现类将打印调用提供者的服务（反转name的字符串）后的输出。
 
-![image-20250222224436133](C:\Users\23864\AppData\Roaming\Typora\typora-user-images\image-20250222224436133.png)
+![image-20250222224436133](..\assets\image-20250222224436133.png)
 
 需要注意的是，现在是无法获取到`userService`实例的，所以预留为`null`。我们之后的目标是，能够通过RPC框架，快速得到一个支持远程调用服务提供者的代理对象，像调用本地方法一样调用`UserService`的方法。
 
@@ -97,25 +97,25 @@ web服务器的选择有很多，比如`Spring Boot`内嵌的`Tomcat`、`NIO`框
 
 1.   打开`zio-rpc-easy`模块，在`pom.xml`文件中引入`Vert.x`和工具类的依赖：
 
-![image-20250222164326595](C:\Users\23864\AppData\Roaming\Typora\typora-user-images\image-20250222164326595.png)
+![image-20250222164326595](..\assets\image-20250222164326595.png)
 
 2.   在`com.zio`包中创建`ziorpc.server`包，并在该包下编写一个web服务器的接口`HttpServer`，定义统一的启动服务器方法，便于后续的扩展，比如实现多种不同的web服务器。
 
-![image-20250222164630006](C:\Users\23864\AppData\Roaming\Typora\typora-user-images\image-20250222164630006.png)
+![image-20250222164630006](..\assets\image-20250222164630006.png)
 
 3.   编写基于`Vert.x`实现的web服务器`VertxHttpServer`，能够监听指定端口并处理请求。
 
-![image-20250222165003410](C:\Users\23864\AppData\Roaming\Typora\typora-user-images\image-20250222165003410.png)
+![image-20250222165003410](..\assets\image-20250222165003410.png)
 
 4.   验证web服务器能否启动成功并接受请求。
 
 修改示例服务提供者模块的`EasyProviderExample`类，编写启动web服务的代码，如下：
 
-![image-20250222165341540](C:\Users\23864\AppData\Roaming\Typora\typora-user-images\image-20250222165341540.png)
+![image-20250222165341540](..\assets\image-20250222165341540.png)
 
 直接运行，在浏览器中访问8080端口：
 
-![image-20250222165312304](C:\Users\23864\AppData\Roaming\Typora\typora-user-images\image-20250222165312304.png)
+![image-20250222165312304](..\assets\image-20250222165312304.png)
 
 能够正常访问并看到输出的文字，说明服务启动成功。
 
@@ -127,17 +127,17 @@ web服务器的选择有很多，比如`Spring Boot`内嵌的`Tomcat`、`NIO`框
 
 1.   打开`zio-rpc-easy`模块，在`com.zio`包下创建`ziorpc.registry`包，并在该包下创建本地服务注册器`LocalRegistry`，当前目录结构如下：
 
-![image-20250222165805473](C:\Users\23864\AppData\Roaming\Typora\typora-user-images\image-20250222165805473.png)
+![image-20250222165805473](..\assets\image-20250222165805473.png)
 
 2.   编写本地服务注册器`LocalRegistry`的代码，使用线程安全的`ConcurrentHashMap`存储服务注册信息，key为服务名称，value为服务的实现类。之后就可以根据要调用的服务名称获取到对应的实现类，然后通过反射进行方法调用了。
 
-![image-20250222170020469](C:\Users\23864\AppData\Roaming\Typora\typora-user-images\image-20250222170020469.png)
+![image-20250222170020469](..\assets\image-20250222170020469.png)
 
 注意，本地服务注册器和注册中心的作用是有区别的。注册中心的作用侧重于管理注册的服务、提供服务信息给消费者；而本地服务注册器的作用是根据服务名获取到对应的实现类，是完成调用必不可少的模块。
 
 3.   服务提供者启动时，需要注册服务到注册器中，因此需要修改`EasyProviderExample`代码如下：
 
-![image-20250222170201068](C:\Users\23864\AppData\Roaming\Typora\typora-user-images\image-20250222170201068.png)
+![image-20250222170201068](..\assets\image-20250222170201068.png)
 
 
 
@@ -158,11 +158,11 @@ web服务器的选择有很多，比如`Spring Boot`内嵌的`Tomcat`、`NIO`框
 
 1.   在`zio-rpc-easy`模块中创建`com.zio.ziorpc.serializer`包，并在该包下编写序列化接口`Serializer`，提供序列化和反序列化两个方法，便于后续扩展更多的序列化器。
 
-![image-20250222170634622](C:\Users\23864\AppData\Roaming\Typora\typora-user-images\image-20250222170634622.png)
+![image-20250222170634622](..\assets\image-20250222170634622.png)
 
 2.   在`serializer`包下基于`Java`自带的序列化器实现`JdkSerializer`，代码如下：
 
-![image-20250222170833781](C:\Users\23864\AppData\Roaming\Typora\typora-user-images\image-20250222170833781.png)
+![image-20250222170833781](..\assets\image-20250222170833781.png)
 
 
 
@@ -174,11 +174,11 @@ web服务器的选择有很多，比如`Spring Boot`内嵌的`Tomcat`、`NIO`框
 
 请求类`RpcRequest`的作用是封装调用所需的信息，比如服务名称、方法名称、调用参数的类型列表、参数列表。这些都是`Java`反射机制所需的参数。
 
-![image-20250222171413066](C:\Users\23864\AppData\Roaming\Typora\typora-user-images\image-20250222171413066.png)
+![image-20250222171413066](..\assets\image-20250222171413066.png)
 
 响应类`RpcResponse`的作用是封装调用方法得到的返回值、以及调用的信息（比如异常情况）等。
 
-![image-20250222171350968](C:\Users\23864\AppData\Roaming\Typora\typora-user-images\image-20250222171350968.png)
+![image-20250222171350968](..\assets\image-20250222171350968.png)
 
 2.   在`zio-rpc-easy`模块中的`com.zio.ziorpc.server`包下编写请求处理器`HttpServerHandler`：
 
@@ -189,7 +189,7 @@ web服务器的选择有很多，比如`Spring Boot`内嵌的`Tomcat`、`NIO`框
 3. 通过反射机制调用方法，得到返回结果。
 4. 对返回结果进行封装和序列化，并写入到响应中。
 
-![image-20250222171800107](C:\Users\23864\AppData\Roaming\Typora\typora-user-images\image-20250222171800107.png)
+![image-20250222171800107](..\assets\image-20250222171800107.png)
 
 需要注意，不同的web服务器对应的请求处理器实现方式也不同，比如`Vert.x`中是通过实现`Handler<HttpServerRequest>`接口来自定义请求处理器的。并且可以通过`request.bodyHandler`异步处理请求。
 
@@ -197,7 +197,7 @@ web服务器的选择有很多，比如`Spring Boot`内嵌的`Tomcat`、`NIO`框
 
 修改`VertxHttpServer`的代码，通过`server.requestHandler`绑定请求处理器。
 
-![image-20250222172041934](C:\Users\23864\AppData\Roaming\Typora\typora-user-images\image-20250222172041934.png)
+![image-20250222172041934](..\assets\image-20250222172041934.png)
 
 至此，引入了RPC框架的服务提供者模块，己经能够接受请求并完成服务调用了。
 
@@ -219,11 +219,11 @@ web服务器的选择有很多，比如`Spring Boot`内嵌的`Tomcat`、`NIO`框
 
 1.   需要注意发送请求前要将参数序列化，代码如下：
 
-![image-20250222172717643](C:\Users\23864\AppData\Roaming\Typora\typora-user-images\image-20250222172717643.png)
+![image-20250222172717643](..\assets\image-20250222172717643.png)
 
 2.   然后修改`EasyConsumerExample`，new一个代理对象并赋值给`userService`就能完成调用：
 
-![image-20250222172848306](C:\Users\23864\AppData\Roaming\Typora\typora-user-images\image-20250222172848306.png)
+![image-20250222172848306](..\assets\image-20250222172848306.png)
 
 静态代理虽然很好理解（就是写个实现类），但缺点也很明显，我们如果要给每个服务接口都写一个实现类，是非常麻烦的，这种代理方式的灵活性很差！
 
@@ -238,7 +238,7 @@ web服务器的选择有很多，比如`Spring Boot`内嵌的`Tomcat`、`NIO`框
 
 1.   在`zio-rpc-easy`模块中创建`com.zio.ziorpc.proxy`，并在该包中编写动态代理类`ServiceProxy`，实现`InvocationHandler`接口的`invoke`方法。代码如下（几乎就是把静态代理的代码搬运过来）：
 
-![image-20250222173224529](C:\Users\23864\AppData\Roaming\Typora\typora-user-images\image-20250222173224529.png)
+![image-20250222173224529](..\assets\image-20250222173224529.png)
 
 解释下上述代码，当用户调用某个接口的方法时，会改为调用`invoke`方法。在`invoke`方法中，我们可以获取到要调用的方法信息、传入的参数列表等，这不就是我们服务提供者需要的参数么？用这些参数来构造请求对象就可以完成调用了。
 
@@ -246,13 +246,13 @@ web服务器的选择有很多，比如`Spring Boot`内嵌的`Tomcat`、`NIO`框
 
 2.   创建动态代理工厂`ServiceProxyFactory`，作用是根据指定类创建动态代理对象，简化对象的创建过程：
 
-![image-20250222173411640](C:\Users\23864\AppData\Roaming\Typora\typora-user-images\image-20250222173411640.png)
+![image-20250222173411640](..\assets\image-20250222173411640.png)
 
 上述代码中，主要是通过`Proxy.newProxyInstance`方法为指定类型创建代理对象。
 
 3.   最后，在`EasyConsumerExample`中，就可以通过调用工厂来为`UserService`获取动态代理对象了。
 
-![image-20250222174053565](C:\Users\23864\AppData\Roaming\Typora\typora-user-images\image-20250222174053565.png)
+![image-20250222174053565](..\assets\image-20250222174053565.png)
 
 至此，简易版的RPC框架已经开发完成，下面进行测试。
 
@@ -262,31 +262,31 @@ web服务器的选择有很多，比如`Spring Boot`内嵌的`Tomcat`、`NIO`框
 
 1.   以debug模式启动`example-provider`服务提供者模块，执行`main`方法：
 
-![image-20250222174326815](C:\Users\23864\AppData\Roaming\Typora\typora-user-images\image-20250222174326815.png)
+![image-20250222174326815](..\assets\image-20250222174326815.png)
 
 2.   以debug模式启动`example-consumer`服务消费者模块，执行`main`方法。
 
 在`ServiceProxy`代理类中添加断点，可以看到调用`userService`时，实际是调用了代理对象的`invoke`方法，并且获取到了`serviceName`、`methodName`、参数类型和列表等信息。
 
-![image-20250222180316613](C:\Users\23864\AppData\Roaming\Typora\typora-user-images\image-20250222180316613.png)
+![image-20250222180316613](..\assets\image-20250222180316613.png)
 
 3.   继续`debug`，可以看到序列化后的请求对象，结构是字节数组：
 
-![image-20250222180350782](C:\Users\23864\AppData\Roaming\Typora\typora-user-images\image-20250222180350782.png)
+![image-20250222180350782](..\assets\image-20250222180350782.png)
 
 4.   在服务提供者模块的请求处理器中打断点，可以看到接受并反序列化后的请求，跟发送时的内容一致：
 
-![image-20250222180653003](C:\Users\23864\AppData\Roaming\Typora\typora-user-images\image-20250222180653003.png)
+![image-20250222180653003](..\assets\image-20250222180653003.png)
 
 5.   继续`debug`，可以看到在请求处理器中，通过反射成功调用了方法，并得到了返回的User对象。
 
-![image-20250222180735759](C:\Users\23864\AppData\Roaming\Typora\typora-user-images\image-20250222180735759.png)
+![image-20250222180735759](..\assets\image-20250222180735759.png)
 
 6.   最后，在服务提供者和消费者模块中都输出了用户名称，说明整个调用过程成功。
 
-![image-20250222181126599](C:\Users\23864\AppData\Roaming\Typora\typora-user-images\image-20250222181126599.png)
+![image-20250222181126599](..\assets\image-20250222181126599.png)
 
-![image-20250222181024345](C:\Users\23864\AppData\Roaming\Typora\typora-user-images\image-20250222181024345.png)
+![image-20250222181024345](..\assets\image-20250222181024345.png)
 
 
 
