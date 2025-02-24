@@ -30,9 +30,12 @@
 
 ## :heavy_check_mark: 已完成部分
 
--   简易版RPC框架，支持一行代码调用其它系统上的服务。
+-   简易版RPC框架，支持一行代码调用其它系统上的服务
 -   全局配置加载
 -   接口Mock
+-   多种序列化器实现：Json、Kryo、Hessian
+-   SPI机制
+-   简易注册中心
 
   
 
@@ -40,17 +43,13 @@
 
 ## :pencil: Todo List
 
--   [ ] 多种序列化器实现
-    -   [ ] Kryo序列化
-    -   [ ] Json序列化
-    -   [ ] Hessian序列化
 -   [ ] Web服务器多种技术实现
+    -   [x] Vert.X
     -   [ ] Socket
     -   [ ] Netty
--   [ ] SPI机制
 -   [ ] 注册中心的多种技术实现
+    -   [x] Etcd
     -   [ ] ZooKeeper
-    -   [ ] Etcd
     -   [ ] Redis
 -   [ ] 注册中心优化
     -   [ ] 心跳检测和续期机制
