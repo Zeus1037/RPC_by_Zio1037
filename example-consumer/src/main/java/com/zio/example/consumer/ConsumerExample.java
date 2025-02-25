@@ -14,19 +14,25 @@ import com.zio.ziorpc.utils.ConfigUtils;
  */
 public class ConsumerExample {
 
-    public static void main(String[] args) {
-        // 获取代理
-        UserService userService = ServiceProxyFactory.getProxy(UserService.class);
-        User user = new User();
-        user.setName("Zio");
-        // 调用
-        User newUser = userService.getUser(user);
-        if (newUser != null) {
-            System.out.println(newUser.getName());
-        } else {
-            System.out.println("user == null");
+    public static void main(String[] args) throws Exception {
+        for (int i = 0; i < 3; i++) {
+            // 获取代理
+            UserService userService = ServiceProxyFactory.getProxy(UserService.class);
+            User user = new User();
+            user.setName("Zio");
+            // 调用
+            User newUser = userService.getUser(user);
+            if (newUser != null) {
+                System.out.println(newUser.getName());
+            } else {
+                System.out.println("user == null");
+            }
+            short number = userService.getNumber();
+            System.out.println(number);
+
+            System.out.printf("完成第 %d 次调用.\n", i + 1);
+
+            Thread.sleep(10 * 1000L);
         }
-        short number = userService.getNumber();
-        System.out.println(number);
     }
 }

@@ -4,7 +4,7 @@
 
 因为Etcd是用Go语言实现的，所以Etcd的性能是很高的，而且它和云原生有着密切的关系，通常被作为云原生应用的基础设施，存储一些元信息。比如经典的容器管理平台`k8s`就使用了Etcd来存储集群配置信息、状态信息、节点信息等。
 
-![image-20240705191245497](..\assets\etcd-xkcd-2347.png)
+![image-20240705191245497](../assets/etcd-xkcd-2347.png)
 
 意思就是这玩意儿挂了，整个云都得挂。
 
@@ -85,7 +85,11 @@ Etcd官方的下载页：https://github.com/etcd-io/etcd/releases
 
 ![image-20250224193556728](../assets/image-20250224193556728.png)
 
-启动一下：
+输入以下命令启动etcd：
+
+```bash
+etcd.exe
+```
 
 ![image-20250224193454103](../assets/image-20250224193454103.png)
 
@@ -109,7 +113,11 @@ Etcd官方的下载页：https://github.com/etcd-io/etcd/releases
 
 ![image-20250224194406538](../assets/image-20250224194406538.png)
 
-安装后，执行命令，可以在指定端口启动可视化界面（默认是8080端口），这里我通过`-p`命令指定8081端口启动。
+安装后，运行以下命令，可以在指定端口启动可视化界面（默认是8080端口），这里我通过`-p`命令指定8081端口启动。
+
+```bash
+etcdkeeper.exe -p 8081
+```
 
 ![image-20250224194830003](../assets/image-20250224194830003.png)
 
@@ -166,7 +174,7 @@ etcd主流的Java客户端是 jetcd: https://github.com/etcd-io/jetcd
 
 3.   Etcd 的数据结构：
 
-![image-20240705193830847](..\assets\image-20240705193830847.png)
+![image-20240705193830847](../assets/image-20240705193830847.png)
 
 
 
