@@ -71,6 +71,8 @@ public class RegistryTest {
     public void heartBeat() throws Exception {
         // init 方法中已经进行心跳检测了
         register();
+        Thread.sleep(15 * 1000L);
+        unRegister();
         Thread.sleep(60 * 1000L);
     }
 }

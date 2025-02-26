@@ -32,7 +32,7 @@ public class ConsumerExample {
 
             System.out.printf("完成第 %d 次调用.\n", i + 1);
 
-            Thread.sleep(10 * 1000L);
+//            Thread.sleep(6 * 1000L);
         }
     }
 }
