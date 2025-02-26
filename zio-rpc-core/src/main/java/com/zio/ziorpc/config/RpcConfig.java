@@ -1,5 +1,6 @@
 package com.zio.ziorpc.config;
 
+import com.zio.ziorpc.fault.retry.RetryStrategyKeys;
 import com.zio.ziorpc.loadbalancer.LoadBalancerKeys;
 import com.zio.ziorpc.serializer.SerializerKeys;
 import lombok.Data;
@@ -52,4 +53,9 @@ public class RpcConfig {
      * 负载均衡器
      */
     private String loadBalancer = LoadBalancerKeys.ROUND_ROBIN;
+
+    /**
+     * 重试策略
+     */
+    private String retryStrategy = RetryStrategyKeys.NO;
 }

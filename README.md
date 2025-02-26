@@ -55,7 +55,7 @@
     -   [x] ZooKeeper
     -   [ ] Redis
 -   [ ] 消费者优化
-    -   [ ] 负载均衡
-    -   [ ] 重试机制
+    -   [x] 负载均衡
+    -   [x] 重试机制
     -   [ ] 容错机制
 -   [ ] Spring Boot Starter 注解驱动实现  

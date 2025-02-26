@@ -7,6 +7,8 @@ import cn.hutool.http.HttpResponse;
 import com.zio.ziorpc.RpcApplication;
 import com.zio.ziorpc.config.RpcConfig;
 import com.zio.ziorpc.constant.RpcConstant;
+import com.zio.ziorpc.fault.retry.RetryStrategy;
+import com.zio.ziorpc.fault.retry.RetryStrategyFactory;
 import com.zio.ziorpc.loadbalancer.LoadBalancer;
 import com.zio.ziorpc.loadbalancer.LoadBalancerFactory;
 import com.zio.ziorpc.model.RpcRequest;
@@ -61,6 +63,7 @@ public class ServiceProxy implements InvocationHandler {
         try {
             // 从注册中心获取服务提供者请求地址
             RpcConfig rpcConfig = RpcApplication.getRpcConfig();
+            System.out.println(rpcConfig);
             Registry registry = RegistryFactory.getInstance(rpcConfig.getRegistryConfig().getRegistry());
             ServiceMetaInfo serviceMetaInfo = new ServiceMetaInfo();
             serviceMetaInfo.setServiceName(serviceName);
@@ -77,10 +80,14 @@ public class ServiceProxy implements InvocationHandler {
             requestParams.put("methodName", rpcRequest.getMethodName());
             ServiceMetaInfo selectedServiceMetaInfo = loadBalancer.select(requestParams, serviceMetaInfoList);
             System.out.println("本次请求的端口是 " + selectedServiceMetaInfo.getServicePort());
-//            ServiceMetaInfo selectedServiceMetaInfo = serviceMetaInfoList.get(0);
 
             // 发送 TCP 请求
-            RpcResponse rpcResponse = VertxTcpClient.doRequest(rpcRequest, selectedServiceMetaInfo);
+//            RpcResponse rpcResponse = VertxTcpClient.doRequest(rpcRequest, selectedServiceMetaInfo);
+            RetryStrategy retryStrategy = RetryStrategyFactory.getInstance(rpcConfig.getRetryStrategy());
+            RpcResponse rpcResponse = retryStrategy.doRetry(() ->
+                    VertxTcpClient.doRequest(rpcRequest, selectedServiceMetaInfo)
+            );
+
             return rpcResponse.getData();
         } catch (Exception e) {
             throw new RuntimeException("调用失败");

@@ -1,0 +1,2 @@
+no=com.zio.ziorpc.fault.retry.NoRetryStrategy
+fixedInterval=com.zio.ziorpc.fault.retry.FixedIntervalRetryStrategy
