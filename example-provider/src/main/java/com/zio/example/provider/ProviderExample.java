@@ -14,6 +14,9 @@ import com.zio.ziorpc.server.HttpServer;
 import com.zio.ziorpc.server.VertxHttpServer;
 import com.zio.ziorpc.server.tcp.VertxTcpServer;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  * 服务提供者示例
  *
@@ -23,6 +26,7 @@ import com.zio.ziorpc.server.tcp.VertxTcpServer;
 public class ProviderExample {
 
     public static void main(String[] args) {
+        Logger.getLogger("io.grpc").setLevel(Level.INFO);
         // RPC 框架初始化
         RpcApplication.init();
 

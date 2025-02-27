@@ -1,6 +1,7 @@
 package com.zio.ziorpc.config;
 
 import com.zio.ziorpc.fault.retry.RetryStrategyKeys;
+import com.zio.ziorpc.fault.tolerant.TolerantStrategyKeys;
 import com.zio.ziorpc.loadbalancer.LoadBalancerKeys;
 import com.zio.ziorpc.serializer.SerializerKeys;
 import lombok.Data;
@@ -58,4 +59,9 @@ public class RpcConfig {
      * 重试策略
      */
     private String retryStrategy = RetryStrategyKeys.NO;
+
+    /**
+     * 容错策略
+     */
+    private String tolerantStrategy = TolerantStrategyKeys.FAIL_FAST;
 }

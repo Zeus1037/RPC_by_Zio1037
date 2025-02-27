@@ -1,0 +1,3 @@
+failFast=com.zio.ziorpc.fault.tolerant.FailFastTolerantStrategy
+failSafe=com.zio.ziorpc.fault.tolerant.FailSafeTolerantStrategy
+failOver=com.zio.ziorpc.fault.tolerant.FailOverTolerantStrategy

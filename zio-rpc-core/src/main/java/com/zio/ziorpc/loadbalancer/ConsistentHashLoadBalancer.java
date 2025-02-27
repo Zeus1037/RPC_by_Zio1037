@@ -31,6 +31,7 @@ public class ConsistentHashLoadBalancer implements LoadBalancer {
         }
 
         // 构建虚拟节点环
+        virtualNodes.clear();
         for (ServiceMetaInfo serviceMetaInfo : serviceMetaInfoList) {
             for (int i = 0; i < VIRTUAL_NODE_NUM; i++) {
                 int hash = getHash(serviceMetaInfo.getServiceAddress() + "#" + i);
