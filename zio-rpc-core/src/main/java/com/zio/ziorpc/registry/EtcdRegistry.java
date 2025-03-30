@@ -21,6 +21,8 @@ import java.time.Duration;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 /**
@@ -59,7 +61,7 @@ public class EtcdRegistry implements Registry {
     @Override
     public void init(RegistryConfig registryConfig) {
         client = Client.builder()
-                .endpoints(registryConfig.getAddress())
+                .endpoints(registryConfig.getAddressList())
                 .connectTimeout(Duration.ofMillis(registryConfig.getTimeout()))
                 .build();
         kvClient = client.getKVClient();
@@ -72,7 +74,7 @@ public class EtcdRegistry implements Registry {
         Lease leaseClient = client.getLeaseClient();
 
         // 创建一个 30 秒的租约
-        long leaseId = leaseClient.grant(30).get().getID();
+        long leaseId = leaseClient.grant(30, 3, TimeUnit.SECONDS).get().getID();
 
         // 设置要存储的键值对
         String registerKey = ETCD_ROOT_PATH + serviceMetaInfo.getServiceNodeKey();

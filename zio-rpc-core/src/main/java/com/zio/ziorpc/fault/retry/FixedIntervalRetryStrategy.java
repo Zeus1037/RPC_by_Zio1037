@@ -42,5 +42,30 @@ public class FixedIntervalRetryStrategy implements RetryStrategy {
         return retryer.call(callable);
     }
 
+    public void doRetry4Registry(RetryableTask task) throws ExecutionException, RetryException {
+        Retryer<Void> retryer = RetryerBuilder.<Void>newBuilder()
+                .retryIfExceptionOfType(Exception.class)
+                .withWaitStrategy(WaitStrategies.fixedWait(3L, TimeUnit.SECONDS))
+                .withStopStrategy(StopStrategies.stopAfterAttempt(3))
+                .withRetryListener(new RetryListener() {
+                    @Override
+                    public <V> void onRetry(Attempt<V> attempt) {
+                        if (attempt.hasException()) {
+                            log.info("服务注册失败，重试次数 {}", attempt.getAttemptNumber());
+                        }
+                    }
+                })
+                .build();
+        retryer.call(() -> {
+            task.run();
+            return null;
+        });
+    }
+
+    @FunctionalInterface
+    public interface RetryableTask {
+        void run() throws Exception; // 允许抛出受检异常
+    }
+
 }
 
